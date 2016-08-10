@@ -6,7 +6,8 @@ package edu.psanglikar.codechef.beginner;
 import java.util.Scanner;
 
 /**
- * solution for <a href=https://www.codechef.com/problems/LUCKFOUR> https://www.codechef.com/problems/LUCKFOUR</a>
+ * solution for <a href=https://www.codechef.com/problems/LUCKFOUR> 
+ * https://www.codechef.com/problems/LUCKFOUR</a>
  * @author Pratik Sanglikar
  */
 public class LUCKFOUR {
