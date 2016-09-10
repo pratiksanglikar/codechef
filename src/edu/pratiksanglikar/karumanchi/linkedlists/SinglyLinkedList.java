@@ -150,7 +150,7 @@ public class SinglyLinkedList {
 	 *            node to insert
 	 */
 	public synchronized void insertAtTheEnd(Node node) {
-		if(head == null) {
+		if (head == null) {
 			insertAtBeginning(node);
 			return;
 		}
@@ -161,30 +161,101 @@ public class SinglyLinkedList {
 		node.setNext(null);
 		length++;
 	}
-	
+
 	/**
 	 * inserts a node at the specified position in the Singly Linked List
 	 * 
 	 * @param node
-	 * 			node to insert
+	 *            node to insert
 	 * @param position
-	 * 			position at which the node to insert
+	 *            position at which the node to insert
 	 */
 	public void insertAtPosition(Node node, int position) {
-		if(position <= 0) {
+		if (position <= 0) {
 			insertAtBeginning(node);
 			return;
 		}
-		if(position > length) {
+		if (position > length) {
 			insertAtTheEnd(node);
 			return;
 		}
 		Node iterator = head;
-		for(int i = 2; i < position; i++, iterator = iterator.getNext()); 
-		Node temp = iterator.getNext();
+		for (int i = 2; i < position; i++, iterator = iterator.getNext())
+			;
+		node.setNext(iterator.getNext());
 		iterator.setNext(node);
-		node.setNext(temp);
 		length++;
 	}
 
+	/**
+	 * Deletes the head node from the Singly Linked List and returns it.
+	 * 
+	 * @return node deleted head node.
+	 */
+	public Node decapitateHead() {
+		if (head == null) {
+			return null;
+		}
+		Node deletedHead = head;
+		head = head.getNext();
+		return deletedHead;
+	}
+
+	/**
+	 * Deletes the node from the end of the Singly Linked List.
+	 * 
+	 * @return deletedNode. deleted node.
+	 */
+	public Node deleteFromEnd() {
+		if (head == null) {
+			return null;
+		}
+		Node nodeToBeDeleted = null;
+		if (head.getNext() == null) {
+			nodeToBeDeleted = head;
+			head = null;
+			length--;
+			return nodeToBeDeleted;
+		}
+		Node iterator;
+		for (iterator = head; iterator.getNext().getNext() != null; iterator = iterator.getNext())
+			;
+		nodeToBeDeleted = iterator.getNext();
+		iterator.setNext(null);
+		length--;
+		return nodeToBeDeleted;
+	}
+
+	/**
+	 * deletes the node from the position specified.
+	 * 
+	 * @param position 
+	 * 			position of the node to be deleted.
+	 * @return deleted node.
+	 */
+	public Node deleteFromPosition(int position) {
+		Node nodeToBeDeleted = null;
+		if(position <= 0) {
+			return decapitateHead();
+		}
+		if(position > length) {
+			return deleteFromEnd();
+		}
+		if (head == null) {
+			return nodeToBeDeleted;
+		} else {
+			if (head.getNext() == null) {
+				nodeToBeDeleted = head;
+				head = null;
+				length--;
+			} else {
+				Node iterator = head;
+				for (int i = 2; i < position; i++, iterator = iterator.getNext());
+				nodeToBeDeleted = iterator.getNext();
+				iterator.setNext(iterator.getNext().getNext());
+				length--;
+			}
+		}
+		return nodeToBeDeleted;
+	}
 }

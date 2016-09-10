@@ -88,4 +88,81 @@ public class SinglyLinkedListTest {
 		s1.insertAtPosition(new Node(5), -7);
 		assertEquals("Insertion at negative position should insert the node at beginning", "5-->13", s1.toString());
 	}
+
+	@Test
+	public void deleteNodeTest() {
+		deleteHeadFromEmptyListTest();
+		deleteHeadFromNonEmptyListTest();
+	}
+
+	private void deleteHeadFromNonEmptyListTest() {
+		SinglyLinkedList s1 = new SinglyLinkedList(new Node(34));
+		s1.insertAtBeginning(new Node(5));
+		assertEquals("It should delete head node in non empty list.", 5, s1.decapitateHead().getData());
+	}
+
+	private void deleteHeadFromEmptyListTest() {
+		SinglyLinkedList s1 = new SinglyLinkedList();
+		assertEquals("It should return null if delete head node is called on an empty list", null, s1.decapitateHead());
+	}
+
+	@Test
+	public void deleteFromEndTest() {
+		deleteFromEndEmptyTest();
+		deleteFromEndSingleElementTest();
+		deleteFromEndNonEmptyTest();
+	}
+
+	private void deleteFromEndNonEmptyTest() {
+		SinglyLinkedList s1 = new SinglyLinkedList(new Node(34));
+		s1.insertAtBeginning(new Node(32));
+		s1.insertAtBeginning(new Node(12));
+		s1.insertAtBeginning(new Node(2));
+		assertEquals("It should delete the last element from singly linked list", 34, s1.deleteFromEnd().getData());
+	}
+
+	private void deleteFromEndSingleElementTest() {
+		SinglyLinkedList s1 = new SinglyLinkedList(new Node(12));
+		assertEquals("It should delete the only element present in the SLL ", 12, s1.deleteFromEnd().getData());
+	}
+
+	private void deleteFromEndEmptyTest() {
+		SinglyLinkedList s1 = new SinglyLinkedList();
+		assertEquals("It should return null when deleting an element from empty SLL", null, s1.deleteFromEnd());
+	}
+	
+	@Test
+	public void deleteFromPosition() {
+		deletePositionOutOfBoundTest();
+		deletePositionExtremeTest();
+		deletePositionRandomTest();
+	}
+
+	private void deletePositionRandomTest() {
+		SinglyLinkedList s1 = new SinglyLinkedList(new Node(10));
+		s1.insertAtTheEnd(new Node(20));
+		s1.insertAtTheEnd(new Node(30));
+		s1.insertAtTheEnd(new Node(40));
+		s1.insertAtTheEnd(new Node(50));
+		s1.deleteFromPosition(3);
+		assertEquals("It should delete the element at position specified ","10-->20-->40-->50", s1.toString());
+	}
+
+	private void deletePositionExtremeTest() {
+		SinglyLinkedList s1 = new SinglyLinkedList(new Node(11));
+		s1.insertAtTheEnd(new Node(22));
+		s1.insertAtTheEnd(new Node(33));
+		s1.insertAtTheEnd(new Node(44));
+		s1.insertAtTheEnd(new Node(55));
+		assertEquals("Node should be deleted for boundry conditions", 55, s1.deleteFromPosition(5).getData());
+	}
+
+	private void deletePositionOutOfBoundTest() {
+		SinglyLinkedList s1 = new SinglyLinkedList(new Node(12));
+		s1.insertAtTheEnd(new Node(24));
+		s1.insertAtTheEnd(new Node(36));
+		s1.insertAtTheEnd(new Node(48));
+		s1.insertAtTheEnd(new Node(60));
+		assertEquals("Node should be deleted for out of bound positions", 12, s1.deleteFromPosition(-43).getData());
+	}
 }
