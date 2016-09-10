@@ -130,7 +130,7 @@ public class SinglyLinkedListTest {
 		SinglyLinkedList s1 = new SinglyLinkedList();
 		assertEquals("It should return null when deleting an element from empty SLL", null, s1.deleteFromEnd());
 	}
-	
+
 	@Test
 	public void deleteFromPosition() {
 		deletePositionOutOfBoundTest();
@@ -145,7 +145,7 @@ public class SinglyLinkedListTest {
 		s1.insertAtTheEnd(new Node(40));
 		s1.insertAtTheEnd(new Node(50));
 		s1.deleteFromPosition(3);
-		assertEquals("It should delete the element at position specified ","10-->20-->40-->50", s1.toString());
+		assertEquals("It should delete the element at position specified ", "10-->20-->40-->50", s1.toString());
 	}
 
 	private void deletePositionExtremeTest() {
@@ -164,5 +164,31 @@ public class SinglyLinkedListTest {
 		s1.insertAtTheEnd(new Node(48));
 		s1.insertAtTheEnd(new Node(60));
 		assertEquals("Node should be deleted for out of bound positions", 12, s1.deleteFromPosition(-43).getData());
+	}
+
+	@Test
+	public void getPositionTest() {
+		getPositionBoundryConditionTest();
+		getPositionRandomTest();
+	}
+
+	private void getPositionRandomTest() {
+		SinglyLinkedList s1 = new SinglyLinkedList(new Node(13));
+		s1.insertAtTheEnd(new Node(26));
+		s1.insertAtTheEnd(new Node(39));
+		s1.insertAtTheEnd(new Node(52));
+		s1.insertAtTheEnd(new Node(75));
+		assertEquals("Should return correct position for a random input", 3, s1.getPosition(new Node(39)));
+
+	}
+
+	private void getPositionBoundryConditionTest() {
+		SinglyLinkedList s1 = new SinglyLinkedList(new Node(9));
+		s1.insertAtTheEnd(new Node(18));
+		s1.insertAtTheEnd(new Node(27));
+		s1.insertAtTheEnd(new Node(36));
+		s1.insertAtTheEnd(new Node(45));
+		assertEquals("It should find position of the node at 0th index", 1, s1.getPosition(new Node(9)));
+		assertEquals("It should find position of the node at length index", 5, s1.getPosition(new Node(45)));
 	}
 }

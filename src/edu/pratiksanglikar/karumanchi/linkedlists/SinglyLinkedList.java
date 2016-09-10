@@ -258,4 +258,31 @@ public class SinglyLinkedList {
 		}
 		return nodeToBeDeleted;
 	}
+	
+	/**
+	 * Returns position of the specified node in given Linked List.
+	 * 
+	 * @param node node to be searched.
+	 * @return position of the node.
+	 */
+	public int getPosition(Node node) {
+		if(head == null) {
+			return -1;
+		}
+		Node iterator = head;
+		for(int i = 1 ; i <= length; i++, iterator = iterator.getNext()) {
+			if(iterator.getData() == node.getData()) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	/**
+	 * clears the values in Singly Linked List.
+	 */
+	public void clearList() {
+		head = null;
+		length = 0;
+	}
 }
