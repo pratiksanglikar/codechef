@@ -53,4 +53,28 @@ public class DoublyLinkedListTest {
 		dl.insertAtTheEnd(new DLLNode(55));
 		assertEquals("It should add a node to the end of an empty list ", 55, dl.getHead().getData());
 	}
+	
+	@Test
+	public void insertAtPositionTest() {
+		insertAtPositionOutOfBoundTest();
+		insertAtPositionEmptyTest();
+	}
+
+	private void insertAtPositionEmptyTest() {
+		DoublyLinkedList dl = new DoublyLinkedList();
+		dl.insertAtThePosition(new DLLNode(25), 0);
+		assertEquals("It should add a node to the end of an empty list ", 25, dl.getHead().getData());
+		assertEquals("It should add a node to the end of an empty list ", 25, dl.getTail().getData());
+	}
+
+	/**
+	 * 
+	 */
+	private void insertAtPositionOutOfBoundTest() {
+		DoublyLinkedList dl = new DoublyLinkedList(new DLLNode(22));
+		dl.insertAtBeginning(new DLLNode(20));
+		dl.insertAtBeginning(new DLLNode(15));
+		dl.insertAtThePosition(new DLLNode(29), 1);
+		assertEquals("It should add a node to the end of non empty list ", "15<==>29<==>20<==>22", dl.toString());
+	}
 }

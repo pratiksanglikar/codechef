@@ -123,7 +123,7 @@ public class DoublyLinkedList {
 	 */
 	public DoublyLinkedList(DLLNode head) {
 		this.head = head;
-		this.tail = null;
+		this.tail = head;
 		this.length = 1;
 	}
 
@@ -209,5 +209,104 @@ public class DoublyLinkedList {
 		node.setPrev(tail);
 		tail = node;
 		length++;
+	}
+	
+	/**
+	 * inserst the DLLNode at the position specified.
+	 * @param node node to be inserted.
+	 * @param position position at which the node to be inserted.
+	 */
+	public void insertAtThePosition(DLLNode node, int position) {
+		if(head == null) {
+			head = tail = node;
+			length++;
+			return;
+		}
+		if(position < 0)
+		{
+			insertAtBeginning(node);
+			return;
+		}
+		if(position > length) {
+			insertAtTheEnd(node);
+			return;
+		}
+		DLLNode iterator = head;
+		for(int i = 0; i < position ; i++, iterator = iterator.getNext());
+		DLLNode previousNode = iterator.getPrev();
+		node.setPrev(previousNode);
+		node.setNext(iterator);
+		iterator.setPrev(node);
+		previousNode.setNext(node);
+		length++;
+	}
+	
+	/**
+	 * deletes the node from the beginning of the Doubly Linked List
+	 * 
+	 * @return deleted node.
+	 */
+	public DLLNode decapitate() {
+		DLLNode nodeToBeDeleted = null;
+		if(length == 1) {
+			nodeToBeDeleted = head;
+			head = tail = null;
+			length--;
+			return nodeToBeDeleted;
+		}
+		nodeToBeDeleted = head;
+		head.getNext().setPrev(null);
+		head = head.getNext();
+		length--;
+		return nodeToBeDeleted;
+	}
+	
+	/**
+	 * deletes the node from the end of the list.
+	 * 
+	 * @return deleted node.
+	 */
+	public DLLNode deleteFromTheEnd() {
+		DLLNode nodeToBeDeleted = null;
+		if(length == 1) {
+			nodeToBeDeleted = head;
+			head = tail = null;
+			length--;
+			return nodeToBeDeleted;
+		}
+		nodeToBeDeleted = tail;
+		tail.getPrev().setNext(null);
+		tail = tail.getPrev();
+		length--;
+		return nodeToBeDeleted;
+	}
+	
+	/**
+	 * deletes the node at specified position.
+	 * 
+	 * @param position from which the node needs to be deleted.
+	 * @return deleted node.
+	 */
+	public DLLNode deleteNodeAtPosition(int position) {
+		DLLNode nodeToBeDeleted = null;
+		if(length == 1) {
+			nodeToBeDeleted = head;
+			head = tail = null;
+			length--;
+			return nodeToBeDeleted;
+		}
+		if(position <= 0) {
+			decapitate();
+		}
+		if(position >= length) {
+			deleteFromTheEnd();
+		}
+		DLLNode iterator = head;
+		for(int i = 0; i < position; i++, iterator = iterator.getNext());
+		nodeToBeDeleted = iterator.getNext();
+		iterator.setNext(iterator.getNext().getNext());
+		iterator.getNext().setPrev(iterator);
+		length--;
+		return nodeToBeDeleted;
 	}
 }
