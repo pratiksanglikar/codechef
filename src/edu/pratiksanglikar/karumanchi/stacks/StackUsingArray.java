@@ -34,14 +34,7 @@ public class StackUsingArray implements Stack {
 		top = -1;
 	}
 
-	/**
-	 * pushes an element on the top of the stack.
-	 * 
-	 * @param element
-	 *            to push
-	 * @throws StackOverFlowException
-	 *             if stack is full.
-	 */
+	@Override
 	public void push(int element) throws StackOverFlowException {
 		if (top + 1 >= array.length) {
 			throw new StackOverFlowException();
@@ -56,6 +49,7 @@ public class StackUsingArray implements Stack {
 	 * @throws StackUnderFlowException
 	 *             if stack is empty
 	 */
+	@Override
 	public int pop() throws StackUnderFlowException {
 		if (isEmpty()) {
 			throw new StackUnderFlowException();
@@ -70,6 +64,7 @@ public class StackUsingArray implements Stack {
 	 * @throws StackUnderFlowException
 	 *             if stack is empty.
 	 */
+	@Override
 	public int peek() throws StackUnderFlowException {
 		if (isEmpty()) {
 			throw new StackUnderFlowException();
