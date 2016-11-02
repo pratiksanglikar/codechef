@@ -111,7 +111,34 @@ public class BinaryTreeTest {
 		bt.levelOrderTraversal();
 		assertEquals("level order traversal should be same", "1 2 3 4 5 6 7", outContent.toString().trim());
 	}
-
+	
+	@Test
+	public void maximumElementTest() {
+		bt.getRoot().getLeft().getRight().setRight(new Node(23));
+		assertEquals("maximum element of the tree should be 23", 23, bt.findMaximum());
+		bt.getRoot().setLeft(null);
+		bt.getRoot().setRight(null);
+		assertEquals("maximum element of the tree should be 1", 1, bt.findMaximum());
+		bt = new BinaryTree(null);
+		assertEquals("maximum element of the tree should be Integer.MIN_VALUE", Integer.MIN_VALUE, bt.findMaximum());
+	}
+	
+	@Test
+	public void maximumElementNonRecursiveTest() {
+		bt.getRoot().getLeft().getRight().setRight(new Node(23));
+		assertEquals("maximum element of the tree should be 23", 23, bt.findMaxNonRecursive());
+		bt.getRoot().setLeft(null);
+		bt.getRoot().setRight(null);
+		assertEquals("maximum element of the tree should be 1", 1, bt.findMaxNonRecursive());
+		bt = new BinaryTree(null);
+		assertEquals("maximum element of the tree should be Integer.MIN_VALUE", Integer.MIN_VALUE, bt.findMaxNonRecursive());
+	}
+	
+	@Test
+	public void searchTest() {
+		assertEquals("it should search the element present in the tree", true, bt.search(4));
+		assertEquals("it should fail for the element not present in the tree", false, bt.search(47));
+	}
 	/**
 	 * cleanup the streams after using it.
 	 */

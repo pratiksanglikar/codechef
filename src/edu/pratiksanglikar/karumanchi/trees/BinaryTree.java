@@ -182,4 +182,90 @@ public class BinaryTree {
 			}
 		}
 	}
+	
+	/**
+	 * finds the maximum element from the tree.
+	 * @return maximum element.
+	 */
+	public int findMaximum() {
+		return findMaximum(this.root);
+	}
+	
+	/**
+	 * finds the maximum element in the tree.
+	 * @param root
+	 * @return maximum element.
+	 */
+	private int findMaximum(Node root) {
+		int leftMax = Integer.MIN_VALUE;
+		int rightMax = Integer.MIN_VALUE;
+		if(root == null) {
+			return Integer.MIN_VALUE;
+		}
+		if(root.getLeft() == null && root.getRight() == null) {
+			return root.getData();
+		}
+		if(root.getLeft() != null) {
+			leftMax = findMaximum(root.getLeft());
+		}
+		if(root.getRight() != null) {
+			rightMax = findMaximum(root.getRight());
+		}
+		return Math.max(leftMax, rightMax);
+	}
+	
+	/**
+	 * returns the maximum value from the tree.
+	 * non-recursive algorithm using level-order traversal.
+	 * 
+	 * @return maximum from the tree.
+	 */
+	public int findMaxNonRecursive() {
+		int maxValue = Integer.MIN_VALUE;
+		if(this.root == null) {
+			return maxValue;
+		}
+		Queue<Node> queue = new LinkedList<Node>();
+		queue.offer(this.root);
+		while(!queue.isEmpty()) {
+			Node node = queue.poll();
+			maxValue = Math.max(node.getData(), maxValue);
+			if(node.getLeft() != null) {
+				queue.offer(node.getLeft());
+			}
+			if(node.getRight() != null) {
+				queue.offer(node.getRight());
+			}
+		}
+		return maxValue;
+	}
+	
+	/**
+	 * checks if the specified element is present in the binary tree or not.
+	 * 
+	 * @param data to be searched.
+	 * @return whether the data is present in the binary tree.
+	 */
+	public boolean search(int data) {
+		boolean found = false;
+		if(root == null) {
+			return found;
+		}
+		Queue<Node> queue = new LinkedList<Node>();
+		queue.offer(root);
+		while(!queue.isEmpty()) {
+			Node node = queue.poll();
+			if(node.getData() == data) {
+				found = true;
+				break;
+			}
+			if(node.getLeft() != null) {
+				queue.offer(node.getLeft());
+			}
+			if(node.getRight() != null) {
+				queue.offer(node.getRight());
+			}
+		}
+		return found;
+	}
 }
