@@ -105,6 +105,12 @@ public class BinaryTreeTest {
 		bt.nonRecursivePostOrder();
 		assertEquals("postorder non-recursive traversal should be same", "4 5 2 6 7 3 1", outContent.toString().trim());
 	}
+	
+	@Test
+	public void levelOrderTest() {
+		bt.levelOrderTraversal();
+		assertEquals("level order traversal should be same", "1 2 3 4 5 6 7", outContent.toString().trim());
+	}
 
 	/**
 	 * cleanup the streams after using it.

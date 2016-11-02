@@ -3,6 +3,8 @@
  */
 package edu.pratiksanglikar.karumanchi.trees;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -160,6 +162,24 @@ public class BinaryTree {
 		}
 		while(!stack2.isEmpty()) {
 			System.out.print(" " + stack2.pop().getData());
+		}
+	}
+	
+	/**
+	 * prints the level order traversal of the binary tree.
+	 */
+	public void levelOrderTraversal() {
+		Queue<Node> queue = new LinkedList<Node>();
+		queue.offer(this.root);
+		while(!queue.isEmpty()) {
+			Node node = queue.poll();
+			System.out.print(" " + node.getData());
+			if(node.getLeft() != null) {
+				queue.offer(node.getLeft());
+			}
+			if(node.getRight() != null) {
+				queue.offer(node.getRight());
+			}
 		}
 	}
 }
