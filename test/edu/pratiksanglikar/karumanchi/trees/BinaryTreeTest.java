@@ -6,6 +6,7 @@ package edu.pratiksanglikar.karumanchi.trees;
 import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 
 import org.junit.After;
@@ -139,6 +140,18 @@ public class BinaryTreeTest {
 		assertEquals("it should search the element present in the tree", true, bt.search(4));
 		assertEquals("it should fail for the element not present in the tree", false, bt.search(47));
 	}
+	
+	@Test
+	public void insertTest() throws IOException {
+		bt.insert(8);
+		bt.levelOrderTraversal();
+		assertEquals("Insert operation in non-empty binary tree should succeed!", "1 2 3 4 5 6 7 8", outContent.toString().trim());
+		bt = new BinaryTree(null);
+		bt.insert(5);
+		bt.levelOrderTraversal();
+		assertEquals("Insert operation in an empty binary tree should succeed!", "1 2 3 4 5 6 7 8 5", outContent.toString().trim());
+	}
+	
 	/**
 	 * cleanup the streams after using it.
 	 */

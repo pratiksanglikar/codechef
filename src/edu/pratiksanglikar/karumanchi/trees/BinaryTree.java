@@ -268,4 +268,31 @@ public class BinaryTree {
 		}
 		return found;
 	}
+	
+	/**
+	 * inserts the data in the binary tree using level order traversal
+	 * non recursively.
+	 * 
+	 * @param data to be inserted.
+	 */
+	public void insert(int data) {
+		Node node = new Node(data);
+		if(this.root == null) {
+			root = node;
+			return;
+		}
+		Queue<Node> queue = new LinkedList<Node>();
+		queue.offer(this.root);
+		while(!queue.isEmpty()) {
+			Node temp = queue.poll();
+			if(temp.getLeft() == null && temp.getRight() == null) {
+				temp.setLeft(node);
+				break;
+			} else if(temp.getLeft() != null) {
+				queue.offer(temp.getLeft());
+			} if(temp.getRight() != null) {
+				queue.offer(temp.getRight());
+			}
+		}
+	}
 }
