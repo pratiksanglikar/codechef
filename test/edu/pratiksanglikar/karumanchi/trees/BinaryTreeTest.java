@@ -70,7 +70,7 @@ public class BinaryTreeTest {
 	@Test
 	public void inOrderRecursiveTest() {
 		bt.inOrderRecursive();
-		assertEquals("preorder recursive traversal should be same", "4 2 5 1 6 3 7", outContent.toString().trim());
+		assertEquals("inorder recursive traversal should be same", "4 2 5 1 6 3 7", outContent.toString().trim());
 	}
 	
 	/**
@@ -79,7 +79,31 @@ public class BinaryTreeTest {
 	@Test
 	public void postOrderRecursiveTest() {
 		bt.postOrderRecursive();
-		assertEquals("preorder recursive traversal should be same", "4 5 2 6 7 3 1", outContent.toString().trim());
+		assertEquals("postorder recursive traversal should be same", "4 5 2 6 7 3 1", outContent.toString().trim());
+	}
+	
+	/**
+	 * test the non-recursive pre-order traversal
+	 */
+	@Test
+	public void preOrderNonRecursiveTest() {
+		bt.nonRecursivePreOrder();
+		assertEquals("preorder non-recursive traversal should be same", "1 2 4 5 3 6 7", outContent.toString().trim());
+	}
+	
+	/**
+	 * test the non-recursive in-order traversal
+	 */
+	@Test
+	public void inOrderNonRecursiveTest() {
+		bt.nonRecursiveInOrder();
+		assertEquals("inorder non-recursive traversal should be same", "4 2 5 1 6 3 7", outContent.toString().trim());
+	}
+	
+	@Test
+	public void postOrderNonRecursiveTest() {
+		bt.nonRecursivePostOrder();
+		assertEquals("postorder non-recursive traversal should be same", "4 5 2 6 7 3 1", outContent.toString().trim());
 	}
 
 	/**
