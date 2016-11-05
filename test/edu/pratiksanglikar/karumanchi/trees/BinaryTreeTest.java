@@ -176,6 +176,34 @@ public class BinaryTreeTest {
 		//assertEquals("Node deletion should be successfull","4 2 5 1 6 7", outContent.toString().trim());
 	}
 	
+	@Test
+	public void structurallyIdenticalTest() {
+		BinaryTree bt1 = new BinaryTree(4); 
+		bt1.getRoot().setLeft(new Node(5));
+		bt1.getRoot().setRight(new Node(6));
+		bt1.getRoot().getLeft().setLeft(new Node(7));
+		bt1.getRoot().getLeft().setRight(new Node(8));
+		bt1.getRoot().getRight().setLeft(new Node(9));
+		bt1.getRoot().getRight().setRight(new Node(10));
+		assertEquals("Trees should be structurally identical!", true, TreeUtilities.isStructurallyIdentical(bt.getRoot(), bt1.getRoot()));
+		bt1.getRoot().getRight().getRight().setRight(new Node(234));
+		assertEquals("Trees should not be structurally identical!", false, TreeUtilities.isStructurallyIdentical(bt.getRoot(), bt1.getRoot()));
+	}
+	
+	@Test
+	public void diameterOfTreeTest() {
+		BinaryTree bt  = new BinaryTree(10);
+		bt.getRoot().setLeft(new Node(11));
+		bt.getRoot().getLeft().setLeft(new Node(12));
+		bt.getRoot().getLeft().getLeft().setLeft(new Node(13));
+		bt.getRoot().getLeft().setRight(new Node(14));
+		bt.getRoot().setRight(new Node(15));
+		bt.getRoot().getRight().setRight(new Node(16));
+		bt.getRoot().getRight().getRight().setRight(new Node(17));
+		bt.getRoot().getRight().setLeft(new Node(18));
+		assertEquals("Diameter of the tree should be 7", 7, TreeUtilities.diameterOfTree(bt.getRoot()));
+	}
+	
 	/**
 	 * cleanup the streams after using it.
 	 */
