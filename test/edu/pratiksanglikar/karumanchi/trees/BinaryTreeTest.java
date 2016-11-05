@@ -215,6 +215,12 @@ public class BinaryTreeTest {
 		bt.getRoot().getLeft().setData(456);
 		assertEquals("Maximum sum of the level should be 459", 459, TreeUtilities.maximumSumByLeve(bt.getRoot()));
 	}
+	
+	@Test
+	public void printPathsToLeaf() {
+		TreeUtilities.printPathsToLeaf(bt.getRoot());
+		assertEquals("1 2 4 \n1 2 5 \n1 3 6 \n1 3 7", outContent.toString().trim());
+	}
 
 	/**
 	 * cleanup the streams after using it.

@@ -191,4 +191,48 @@ public class TreeUtilities {
 		}
 		return maximumSum;
 	}
+	
+	/**
+	 * prints the paths to leaf from root node.
+	 * 
+	 * @param root the root of the binary tree.
+	 */
+	public static void printPathsToLeaf(Node root) {
+		int[] path  = new int[1000];
+		int pathlen = 0;
+		printPaths(root, path, pathlen);
+	}
+	
+	/**
+	 * prints paths to the leaf nodes recursively.
+	 * 
+	 * @param root the root of the binary tree.
+	 * @param path the path trversed so far.
+	 * @param pathLen length of the path.
+	 */
+	private static void printPaths(Node root, int[] path, int pathLen) {
+		if(root == null) {
+			return;
+		}
+		path[pathLen++] = root.getData();
+		if(root.getLeft() == null && root.getRight() == null) {
+			printArray(path, pathLen);
+		} else {
+			printPaths(root.getLeft(), path, pathLen);
+			printPaths(root.getRight(), path, pathLen);
+		}
+	}
+	
+	/**
+	 * prints the array.
+	 * 
+	 * @param array array to be printed.
+	 * @param length length of the the array.
+	 */
+	private static void printArray(int[] array, int length) {
+		System.out.println();
+		for (int i = 0; i < length; i++) {
+			System.out.print(array[i] + " ");
+		}
+	}
 }
