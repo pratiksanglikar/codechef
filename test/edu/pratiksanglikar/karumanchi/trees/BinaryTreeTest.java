@@ -221,6 +221,12 @@ public class BinaryTreeTest {
 		TreeUtilities.printPathsToLeaf(bt.getRoot());
 		assertEquals("1 2 4 \n1 2 5 \n1 3 6 \n1 3 7", outContent.toString().trim());
 	}
+	
+	@Test
+	public void mirrorTest() {
+		new BinaryTree(TreeUtilities.createMirror(bt.getRoot())).preOrderRecursive();
+		assertEquals("Pre-order traversal of the mirrored tree should be: ","1 3 7 6 2 5 4", outContent.toString().trim());
+	}
 
 	/**
 	 * cleanup the streams after using it.

@@ -235,4 +235,25 @@ public class TreeUtilities {
 			System.out.print(array[i] + " ");
 		}
 	}
+	
+	/**
+	 * creates a new mirror tree of the given tree and returns it's root node.
+	 * 
+	 * @param root the root of the binary tree which is to be mirrored.
+	 * @return root of the resulting mirror binary tree.
+	 */
+	public static Node createMirror(Node root) {
+		Node mirror = null;
+		if(root == null) {
+			return mirror;
+		}
+		mirror = new Node(root.getData());
+		if(root.getLeft() != null) {
+			mirror.setRight(createMirror(root.getLeft()));
+		}
+		if(root.getRight() != null) {
+			mirror.setLeft(createMirror(root.getRight()));
+		}
+		return mirror;
+	}
 }
