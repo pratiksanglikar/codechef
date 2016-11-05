@@ -295,4 +295,29 @@ public class BinaryTree {
 			}
 		}
 	}
+	
+	/**
+	 * returns the size of the binary tree.
+	 * 
+	 * @return size of binary tree.
+	 */
+	public int getSize() {
+		return size(this.root);
+	}
+
+	/**
+	 * returns the size of the sub-tree with root - root.
+	 * @param root of the sub-tree.
+	 * @return size of the sub-tree.
+	 */
+	private int size(Node root) {
+		int leftSize = 0;
+		int rightSize = 0;
+		if(root == null) {
+			return 0;
+		}
+		leftSize = size(root.getLeft());
+		rightSize = size(root.getRight());
+		return 1 + leftSize + rightSize;
+	}
 }

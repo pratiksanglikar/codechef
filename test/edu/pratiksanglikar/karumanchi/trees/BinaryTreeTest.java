@@ -152,6 +152,30 @@ public class BinaryTreeTest {
 		assertEquals("Insert operation in an empty binary tree should succeed!", "1 2 3 4 5 6 7 8 5", outContent.toString().trim());
 	}
 	
+	@Test
+	public void sizeTest() {
+		assertEquals("Size of the binary tree should be 7", 7, bt.getSize());
+	}
+	
+	@Test
+	public void reverseLevelOrderTest() {
+		TreeUtilities.reverseLevelOrder(bt.getRoot());
+		assertEquals("Reverse Level order should be correct!","4 5 6 7 2 3 1", outContent.toString().trim());
+	}
+	
+	@Test 
+	public void deepestNodeTest() {
+		assertEquals("Deepest Node of the tree should be 7", 7, TreeUtilities.getDeepestNode(bt.getRoot()));
+	} 
+	
+	
+	@Test
+	public void deleteNodeTest() {
+		TreeUtilities.deleteNode(bt.getRoot(), 3);
+		bt.inOrderRecursive();
+		//assertEquals("Node deletion should be successfull","4 2 5 1 6 7", outContent.toString().trim());
+	}
+	
 	/**
 	 * cleanup the streams after using it.
 	 */
