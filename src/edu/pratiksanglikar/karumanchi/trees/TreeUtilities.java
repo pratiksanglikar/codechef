@@ -155,4 +155,40 @@ public class TreeUtilities {
 		}
 		return Math.max(heightOfTree(root.getLeft()), heightOfTree(root.getRight())) + 1;
 	}
+	
+	/**
+	 * returns the sum of level where the level's sum is maximum.
+	 * 
+	 * @param root
+	 * @return
+	 */
+	public static int maximumSumByLeve(Node root) {
+		int maximumSum = 0, currentLevelSum = 0;
+		if(root == null) {
+			return 0;
+		}
+		Queue<Node> queue = new LinkedList<Node>();
+		queue.offer(root);
+		queue.offer(null); // null to indicate the end of the level.
+		Node temp = null;
+		while(!queue.isEmpty()) {
+			temp = queue.poll();
+			if(temp != null) {
+				currentLevelSum += temp.getData();
+				if(temp.getLeft() != null) {
+					queue.offer(temp.getLeft());
+				}
+				if(temp.getRight() != null) {
+					queue.offer(temp.getRight());
+				}
+			} else {
+				maximumSum = Math.max(maximumSum, currentLevelSum);
+				currentLevelSum = 0;
+				if(!queue.isEmpty()) {
+					queue.offer(null);
+				}
+			}
+		}
+		return maximumSum;
+	}
 }
