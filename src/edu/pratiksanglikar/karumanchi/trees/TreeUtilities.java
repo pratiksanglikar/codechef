@@ -256,4 +256,47 @@ public class TreeUtilities {
 		}
 		return mirror;
 	}
+	
+	/**
+	 * prints all the ancestors of the given node.
+	 * @param root the root of the binary tree
+	 * @param data the data to be found.
+	 * @return isSuccessful.
+	 */
+	public boolean printAllAncestors(Node root, int data) {
+		if(root == null) {
+			return false;
+		}
+		if(root.getData() == data || root.getLeft().getData() == data || root.getRight().getData() == data ||
+				printAllAncestors(root.getLeft(), data) || printAllAncestors(root.getRight(), data)) {
+			System.out.print(root.getData() + " ");
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * finds the least common ancestor of the two nodes node1 and node2 for given tree specified by
+	 * root.
+	 * 
+	 * @param root the root the tree
+	 * @param node1 
+	 * @param node2
+	 * @return least common ancestor.
+	 */
+	public Node leastCommonAncestor(Node root, Node node1, Node node2) {
+		Node lca = null;
+		if(root == null) {
+			return lca;
+		}
+		if(root.getData() == node1.getData() || root.getData() == node2.getData()) {
+			return root;
+		}
+		Node left = leastCommonAncestor(root.getLeft(), node1, node2);
+		Node right = leastCommonAncestor(root.getRight(), node1, node2);
+		if(left != null && right != null) {
+			return root;
+		}
+		return (left != null ? left : right);
+	}
 }
