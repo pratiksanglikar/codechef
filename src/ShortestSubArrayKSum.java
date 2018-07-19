@@ -4,7 +4,7 @@ class ShortestSubArrayKSum {
 		if(array == null || array.length == 0) {
 			return -1;
 		}
-		int shortestLen = -1;
+		int shortestLen = Integer.MAX_VALUE;
 		for(int a = 0; a < array.length; a++) {
 			int sum = 0;
 			for(int b = a; b < array.length; b++) {
